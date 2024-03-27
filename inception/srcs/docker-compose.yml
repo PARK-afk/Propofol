@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+    mariadb:
+        build: ./requirements/mariadb
+        env_file: .env
+        restart: always
+        expose:
+            - "3306"
+        networks:
+            - intra
+        volumes:
+            - data:/var/lib/mysql
+
+    wordpress:
+        build: ./requirements/wordpress
+        env_file: .env
+        restart: always
+        volumes:
+            - /Users/parkjunseo/42/inception/srcs/requirements/web:/var/www/html
+        expose: 
+            - "9000"
+        networks:
+            - intra
+        depends_on:
+            - mariadb
+
+    nginx:
+        build: ./requirements/nginx
+        restart: always
+        ports:
+            - "443:443"
+        volumes:
+            - /Users/parkjunseo/42/inception/srcs/requirements/web:/var/www/html
+        networks:
+            - intra
+        depends_on:
+            - wordpress
+
+networks:
+    intra:
+        driver: bridge
+
+volumes:
+    data:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: /Users/parkjunseo/42/inception/srcs/requirements/db
