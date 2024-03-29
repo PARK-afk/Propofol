@@ -31,7 +31,5 @@ RUN chmod 755 /usr/local/bin/script.sh
 
 COPY ./tools/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 RUN rm -rf wordpress-5.7.8.tar.gz /var/www/wordpress
-# 스크립트 파일에 실행 권한 부여
 
-# 컨테이너 시작 시 스크립트 실행
 CMD ["sh", "/usr/local/bin/script.sh"]
