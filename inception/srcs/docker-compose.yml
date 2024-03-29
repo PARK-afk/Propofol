@@ -53,12 +53,12 @@ volumes:
         driver_opts:
             type: none
             o: bind
-            device: /home/junsepar/data/db
+            device: /home/jun/data/db
     
     web:
         driver: local
         driver_opts:
             type: none
             o: bind
-            device: /home/junsepar/data/web
+            device: /home/jun/data/web
     
