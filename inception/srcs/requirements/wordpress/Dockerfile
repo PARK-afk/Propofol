@@ -11,9 +11,9 @@ RUN mkdir -p /var/www/html
 RUN mkdir -p /run/php
 
 RUN cd /var/www/html/ &&\
-    curl -O https://wordpress.org/latest.tar.gz && \
-    tar -xzvf latest.tar.gz && \
-    rm latest.tar.gz && \
+    curl -O https://wordpress.org/wordpress-5.7.8.tar.gz && \
+    tar -xzvf wordpress-5.7.8.tar.gz && \
+    rm wordpress-5.7.8.tar.gz && \
     mv wordpress/* /var/www/html && \
     rm -rf wordpress
 
@@ -30,7 +30,7 @@ COPY tools/script.sh /usr/local/bin/script.sh
 RUN chmod 755 /usr/local/bin/script.sh
 
 COPY ./tools/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-RUN rm -rf latest.tar.gz /var/www/wordpress
+RUN rm -rf wordpress-5.7.8.tar.gz /var/www/wordpress
 # 스크립트 파일에 실행 권한 부여
 
 # 컨테이너 시작 시 스크립트 실행

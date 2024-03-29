@@ -1,7 +1,7 @@
 NAME = inception
 
 #clean 빼먹지말아라 all : 
-all : setup build
+all : clean setup build
 
 build:
 	cd ./srcs && docker compose up --build;

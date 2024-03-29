@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
     mariadb:
-        container_name: mariadb
+        image: mariadb
         build: ./requirements/mariadb
         env_file: .env
         restart: always
@@ -12,9 +12,10 @@ services:
             - intra
         volumes:
             - db:/var/lib/mysql
+        container_name: mariadb
 
     wordpress:
-        container_name: wordpress
+        image: wordpress
         build: ./requirements/wordpress
         env_file: .env
         restart: always
@@ -26,9 +27,10 @@ services:
             - intra
         depends_on:
             - mariadb
+        container_name: wordpress
 
     nginx:
-        container_name: nginx
+        image: nginx
         build: ./requirements/nginx
         restart: always
         ports:
@@ -39,6 +41,7 @@ services:
             - intra
         depends_on:
             - wordpress
+        container_name: nginx
 
 networks:
     intra:
